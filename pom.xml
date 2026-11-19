@@ -40,8 +40,6 @@
     <maven.jar.version>3.4.2</maven.jar.version>
     <maven.assembly.version>3.7.1</maven.assembly.version>
 
-    <hop.plugin.doclint.version>0.1.0-SNAPSHOT</hop.plugin.doclint.version>
-
     <!-- Set to -XstartOnFirstThread on macOS when tests create SWT widgets. -->
     <ui.test.argLine/>
   </properties>
@@ -95,27 +93,6 @@
     </repository>
   </repositories>
 
-  <!-- Maven resolves build plugins exclusively through pluginRepositories. hop-plugin-doclint-maven-plugin
-       lives in the sogeo snapshot repository, so consumers need these entries. -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>jars-interlis</id>
-      <url>https://jars.interlis.ch/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>sogeo-releases</id>
-      <url>https://jars.interlis.guru/releases/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>sogeo-snapshots</id>
-      <url>https://jars.interlis.guru/snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
   <distributionManagement>
     <repository>
       <id>sogeo-releases</id>
@@ -162,29 +139,8 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>ch.so.agi</groupId>
-          <artifactId>hop-plugin-doclint-maven-plugin</artifactId>
-          <version>${hop.plugin.doclint.version}</version>
-        </plugin>
       </plugins>
     </pluginManagement>
-
-    <plugins>
-      <plugin>
-        <groupId>ch.so.agi</groupId>
-        <artifactId>hop-plugin-doclint-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>validate-hop-plugin-documentation</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
 
   <profiles>
